@@ -4,6 +4,8 @@ import "./App.css";
 import Search from "./components/Search.js";
 import WeatherTod from "./components/WeatherTod";
 import WeatherOver from "./components/WeatherOver";
+import IMAGES from "./img/weather-icons/Images.js";
+import {imageSrc} from "./img/weather-icons/Images.js"
 
 class App extends Component {
   constructor(props) {
