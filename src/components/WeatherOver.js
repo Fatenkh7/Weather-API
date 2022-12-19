@@ -1,26 +1,35 @@
 import React from "react";
 import "./WeatherOver.css";
-import clear from "./../img/weather-icons/clear.svg";
-import mostlycloudy from "./../img/weather-icons/mostlycloudy.svg";
-import WeatherPre from "./WeatherPre.js"; 
-
+import WeatherPre from "./WeatherPre.js";
+import fakedata from "./../data/fakedata.json";
+import IMAGES from "../Images";
 class WeatherOver extends React.Component {
-    
-    render() { 
-        return (
-        <div className="weather-over">
+  constructor(props) {
+    super(props);
+    this.state = fakedata;
+  }
+  render() {
+    const imageSrc = (image) => {
+      if (image === "Cloudy") return IMAGES.cloudy;
+      else if (image === "Clear") return IMAGES.clear;
+      else if (image === "Mostlycloudy") return IMAGES.mostlycloudy;
+      else if (image === "Partlycloudy") return IMAGES.partlycloudy;
+      else if (image === "Snow") return IMAGES.snow;
+      else if (image === "Storm") return IMAGES.storm;
+      else if (image === "Rain") return IMAGES.rain;
+      else if (image === "Fog") return IMAGES.fog;
+      else if (image === "Drizzle") return IMAGES.drizzle;
+    };
+    const weatherList = this.state.list.map((element, index) => (
+      <WeatherPre
+        src={imageSrc(element.weather[0].main)}
+        time={element.dt}
+        temp={parseInt(element.main.temp - 273)}
+      />
+    ));
 
-          <WeatherPre src={mostlycloudy} time ={'3:00'} temp={8} />
-          <WeatherPre src={mostlycloudy} time={'6:00'} temp={9} />
-          <WeatherPre src={clear} time={'9:00'} temp={14} />
-          <WeatherPre src={clear} time={'12:00'} temp={17} />
-          <WeatherPre src={clear} time={'15:00'} temp={18} />
-          <WeatherPre src={clear} time={'18:00'} temp={16} />
-          <WeatherPre src={mostlycloudy} time={'21:00'} temp={13} />
-          
-        </div>
-        );
-    }
+    return <div className="weather-over">{weatherList}</div>;
+  }
 }
- 
+
 export default WeatherOver;

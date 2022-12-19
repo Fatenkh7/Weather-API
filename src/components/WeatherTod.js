@@ -1,6 +1,5 @@
 import React from "react";
 import "./WeatherTod.css";
-import clear from "./../img/weather-icons/clear.svg";
 import mostlycloudy from "./../img/weather-icons/mostlycloudy.svg";
 
 class WeatherTod extends React.Component {
