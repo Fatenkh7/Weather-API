@@ -2,68 +2,22 @@ import React from "react";
 import "./WeatherOver.css";
 import clear from "./../img/weather-icons/clear.svg";
 import mostlycloudy from "./../img/weather-icons/mostlycloudy.svg";
+import WeatherPre from "./WeatherPre.js"; 
+
 class WeatherOver extends React.Component {
-    state = {
-        degree:"8",
-        timer:"03:00",
-     } 
+    
     render() { 
         return (
         <div className="weather-over">
 
-            <div className="weather_pertime">
-            <h2>{this.state.timer}</h2>
-            <img
-              src={mostlycloudy}
-              alt="mostlycloudy"
-              width="120"
-              height="120"
-            />
-            <h2>{this.state.degree}&#176;C</h2>
-          </div>
-          <div className="weather_pertime">
-            <h2>{this.state.timer}</h2>
-            <img
-              src={mostlycloudy}
-              alt="mostlycloudy"
-              width="120"
-              height="120"
-            />
-            <h2>{this.state.degree}&#176;C</h2>
-          </div>
-
-          <div className="weather_pertime">
-            <h2>{this.state.timer}</h2>
-            <img src={clear} alt="clear" width="120" height="120" />
-            <h2>{this.state.degree}&#176;C</h2>
-          </div>
-
-          <div className="weather_pertime">
-            <h2>{this.state.timer}</h2>
-            <img src={clear} alt="clear" width="120" height="120" />
-            <h2>{this.state.degree}&#176;C</h2>
-          </div>
-          <div className="weather_pertime">
-            <h2>{this.state.timer}</h2>
-            <img src={clear} alt="clear" width="120" height="120" />
-            <h2>{this.state.degree}&#176;C</h2>
-          </div>
-
-          <div className="weather_pertime">
-            <h2>{this.state.timer}</h2>
-            <img src={clear} alt="clear" width="120" height="120" />
-            <h2>{this.state.degree}&#176;C</h2>
-          </div>
-          <div className="weather_pertime">
-            <h2>{this.state.timer}</h2>
-            <img
-              src={mostlycloudy}
-              alt="mostlycloudy"
-              width="120"
-              height="120"
-            />
-            <h2>{this.state.degree}&#176;C</h2>
-          </div>
+          <WeatherPre src={mostlycloudy} time ={'3:00'} temp={8} />
+          <WeatherPre src={mostlycloudy} time={'6:00'} temp={9} />
+          <WeatherPre src={clear} time={'9:00'} temp={14} />
+          <WeatherPre src={clear} time={'12:00'} temp={17} />
+          <WeatherPre src={clear} time={'15:00'} temp={18} />
+          <WeatherPre src={clear} time={'18:00'} temp={16} />
+          <WeatherPre src={mostlycloudy} time={'21:00'} temp={13} />
+          
         </div>
         );
     }
