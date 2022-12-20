@@ -4,7 +4,6 @@ class Search extends React.Component {
   state = {
     input: ""
   };
-
   render() {
     return (
         <header className="app__header">

@@ -1,13 +1,8 @@
 import React from "react";
 import "./WeatherOver.css";
 import WeatherPre from "./WeatherPre.js";
-import fakedata from "./../data/fakedata.json";
 import IMAGES from "../Images";
 class WeatherOver extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = fakedata;
-  }
   render() {
     const imageSrc = (image) => {
       if (image === "Clouds") return IMAGES.cloudy;
@@ -40,7 +35,7 @@ class WeatherOver extends React.Component {
         let strTime = hours + ':' + minutes + ' ' + ampm;
         return strTime;
     }
-    const weatherList = this.state.list.map((element, index) => (
+    const weatherList = this.props.data.list.map((element, index) => (
       <WeatherPre
         src={imageSrc(element.weather[0].main)}
         time={time(element.dt_txt)}
