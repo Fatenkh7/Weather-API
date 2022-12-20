@@ -40,7 +40,7 @@ body{
   flex-direction: column;
   align-items: center;
   grid-column: 1fr;
-  padding-bottom: 100px;
+  padding: 50px 0;
 }
 .weather_pertime>*{
   margin: 15px;
@@ -68,12 +68,12 @@ body{
     align-items: center;
     grid-column: 1/8;
     justify-content: center;
+    border-top: solid 1px var(--clr0);
+    padding: 25px 0;  
   }
 
   .app__main {
     width: 90%;
-  }
-  .app__main *{
-    border-bottom: var(--clr0);
+  width: calc(100% - 10px);
   }
 }

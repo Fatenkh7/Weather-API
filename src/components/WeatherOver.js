@@ -10,7 +10,7 @@ class WeatherOver extends React.Component {
   }
   render() {
     const imageSrc = (image) => {
-      if (image === "Cloudy") return IMAGES.cloudy;
+      if (image === "Clouds") return IMAGES.cloudy;
       else if (image === "Clear") return IMAGES.clear;
       else if (image === "Mostlycloudy") return IMAGES.mostlycloudy;
       else if (image === "Partlycloudy") return IMAGES.partlycloudy;
@@ -20,15 +20,36 @@ class WeatherOver extends React.Component {
       else if (image === "Fog") return IMAGES.fog;
       else if (image === "Drizzle") return IMAGES.drizzle;
     };
+    const weatherTimeSel = (list) => {
+      let weatherListArray = [];
+      for (let i = 0; i < list.length; i++) {
+        if (i in [4, 7, 10, 13, 16, 19, 22]) {
+          weatherListArray.push(weatherList[i]);
+        }
+      }
+      return weatherListArray;
+    };
+    const time=(timeStr)=>{
+        let newTimeStr =new Date(timeStr)
+        let hours = newTimeStr.getHours();
+        let minutes = newTimeStr.getMinutes();
+        let ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        let strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
     const weatherList = this.state.list.map((element, index) => (
       <WeatherPre
         src={imageSrc(element.weather[0].main)}
-        time={element.dt}
+        time={time(element.dt_txt)}
         temp={parseInt(element.main.temp - 273)}
+        key={index}
+        main={element.weather[0].main}
       />
     ));
-
-    return <div className="weather-over">{weatherList}</div>;
+    return <div className="weather-over">{weatherTimeSel(weatherList)}</div>;
   }
 }
 
