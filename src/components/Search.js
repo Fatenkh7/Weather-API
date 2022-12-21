@@ -2,16 +2,32 @@ import React from "react";
 import "./Search.css";
 class Search extends React.Component {
   state = {
-    input: ""
+    input: "",
   };
+  handleSubmit = event => {
+    // 👇️ prevent page refresh
+    event.preventDefault();}
+
   render() {
     return (
-        <header className="app__header">
-          <form>
-            <input placeholder="Type in a city name" id="citysearch"></input>
-            <button className="find">FIND WEATHER</button>
-          </form>
-        </header>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          id="citysearch"
+          onChange={event => {
+            this.setState({ input: event.target.value });
+          }}
+          placeholder="Type in a city name"
+        />
+        <button
+          onClick={event => {
+            this.props.handleInput(this.state.input);
+          }}
+          className="find"
+        >
+          FIND WEATHER
+        </button>
+      </form>
     );
   }
 }

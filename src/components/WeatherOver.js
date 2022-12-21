@@ -29,6 +29,7 @@ class WeatherOver extends React.Component {
         let hours = newTimeStr.getHours();
         let minutes = newTimeStr.getMinutes();
         let ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours +3;
         hours = hours % 12;
         hours = hours ? hours : 12; // the hour '0' should be '12'
         minutes = minutes < 10 ? '0'+minutes : minutes;
@@ -39,7 +40,7 @@ class WeatherOver extends React.Component {
       <WeatherPre
         src={imageSrc(element.weather[0].main)}
         time={time(element.dt_txt)}
-        temp={parseInt(element.main.temp - 273)}
+        temp={parseInt(element.main.temp)}
         key={index}
         main={element.weather[0].main}
       />
