@@ -6,8 +6,39 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      error: null,
+      isLoaded: false,
+      items: null,
       name: "beirut",
     };
+    this.getWeather = this.getWeather.bind(this);
+  }
+
+  getWeather(city) {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=8&units=metric&appid=3316efa1ee9e9077c3ea940ec0989bd4`
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+          this.setState({
+            isLoaded: true,
+            items: result,
+          });
+        },
+
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  }
+
+  componentDidMount() {
+    this.getWeather(this.state.name);
   }
 
   handleInputChange = (value) => {
@@ -18,9 +49,15 @@ class App extends Component {
     return (
       <div className="app">
         <header className="app__header">
-          <Search handleInput={this.handleInputChange} />
+          <Search
+            handleInput={this.handleInputChange}
+            getWeather={this.getWeather ? this.getWeather : null}
+          />
         </header>
-        <Main cityName={this.state.name} />
+        <Main
+          isLoaded={this.state.isLoaded}
+          cityData={this.state.items ? this.state.items : null}
+        />
       </div>
     );
   }

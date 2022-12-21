@@ -20,9 +20,7 @@ class Search extends React.Component {
           placeholder="Type in a city name"
         />
         <button
-          onClick={event => {
-            this.props.handleInput(this.state.input);
-          }}
+          onClick={() =>{this.props.getWeather(this.state.input)}}
           className="find"
         >
           FIND WEATHER
