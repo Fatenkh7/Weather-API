@@ -10,6 +10,7 @@ class App extends Component {
       isLoaded: false,
       items: null,
       name: "beirut",
+      errMessage: null
     };
     this.getWeather = this.getWeather.bind(this);
   }
@@ -21,13 +22,17 @@ class App extends Component {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result);
-          this.setState({
-            isLoaded: true,
-            items: result,
-          });
+          if (result.cod !== "200") {
+            this.setState({ 
+              errMessage:result.message });
+          } else {
+            console.log(result);
+            this.setState({
+              isLoaded: true,
+              items: result,
+            });
+          }
         },
-
         (error) => {
           this.setState({
             isLoaded: true,
@@ -55,11 +60,13 @@ class App extends Component {
           />
         </header>
         <Main
+          errMessage={this.state.errMessage}
+          error={this.state.error}
           isLoaded={this.state.isLoaded}
           cityData={this.state.items ? this.state.items : null}
         />
       </div>
-    );
+    )
   }
 }
 

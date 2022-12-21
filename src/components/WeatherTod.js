@@ -24,7 +24,7 @@ class WeatherTod extends React.Component {
             width="250"
             height="250"
           />
-          <h1 className="weather_type">overcast clouds</h1>
+          <h1 className="weather_type">{this.props.data.list[1].weather[0].description}</h1>
         </figure>
         <h1>
           Temperature
