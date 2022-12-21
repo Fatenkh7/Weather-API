@@ -11,7 +11,7 @@
     margin:0  30px;
     font-size: x-large;
     color: var(--clr3);
-    width: 20%;
+    width: fit-content;
   }
   #citysearch:focus{
     outline: none;
@@ -32,6 +32,16 @@
     color: var(--clr4);
     border-radius: 2px;
     margin: 0  30px;
+  }
+  @media  screen and (max-width:1300px){
+    .app__header form{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #citysearch{
+      width: fit-content;
+    }
   }
   @media  screen and (max-width:768px){
     .app__header form{

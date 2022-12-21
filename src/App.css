@@ -3,11 +3,11 @@
   padding: 0;
 }
 :root{
-  --clr0: #8229ca;
-  --clr1: #B75CFF;
-  --clr2: #d2a6f7;
+  --clr0: #5879c7;
+  --clr1: #6c94c9;
+  --clr2: #9ccef3;
   --clr3: white;
-  --clr4: black;
+  --clr4: #2c3975;
   margin: 0;
 
 }
@@ -74,6 +74,6 @@ body{
 
   .app__main {
     width: 90%;
-  width: calc(100% - 10px);
+  width: calc(100% - 20px);
   }
 }

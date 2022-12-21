@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
+import {FullURL } from "./api";
+import {API_KEY} from "./api";
 import Search from "./components/Search.js";
-import Main from "./main.js";
+import Main from "./components/main.js";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -10,26 +12,30 @@ class App extends Component {
       isLoaded: false,
       items: null,
       name: "beirut",
-      errMessage: null
+      errMessage: null,
+      api:API_KEY
     };
     this.getWeather = this.getWeather.bind(this);
   }
 
   getWeather(city) {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=8&units=metric&appid=3316efa1ee9e9077c3ea940ec0989bd4`
-    )
+    let api= this.state.api;
+    let url = FullURL(city,api)
+    console.log(url)
+    fetch(url)
       .then((res) => res.json())
       .then(
         (result) => {
           if (result.cod !== "200") {
-            this.setState({ 
-              errMessage:result.message });
+            this.setState({
+              isLoaded: true,
+              errMessage: result.message
+            });
           } else {
-            console.log(result);
             this.setState({
               isLoaded: true,
               items: result,
+              errMessage: null
             });
           }
         },
@@ -51,6 +57,7 @@ class App extends Component {
   };
 
   render() {
+
     return (
       <div className="app">
         <header className="app__header">
@@ -60,13 +67,13 @@ class App extends Component {
           />
         </header>
         <Main
-          errMessage={this.state.errMessage}
+          err={this.state.errMessage}
           error={this.state.error}
           isLoaded={this.state.isLoaded}
           cityData={this.state.items ? this.state.items : null}
         />
       </div>
-    )
+    );
   }
 }
 

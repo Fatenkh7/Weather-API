@@ -1,0 +1,14 @@
+body{
+    background-color: var(--clr2);
+}
+.app_main2{
+    display: flex;
+    justify-content: center;
+}
+.load{
+    padding-top: 250px;
+
+    text-align: center;
+    font-size: 50px;
+    color: var(--clr0);
+}
